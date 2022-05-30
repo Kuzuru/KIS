@@ -3,6 +3,8 @@ version: "3"
 services:
   main-api-service:
     container_name: "Main-API-Service"
+    volumes:
+      - .:/var/www
     build:
       context: .
       dockerfile: Dockerfile

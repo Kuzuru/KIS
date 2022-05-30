@@ -17,9 +17,8 @@ RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
 
 FROM alpine:latest
 
-RUN apk update \
-  && apk add --no-cache
+RUN apk update && apk add --no-cache
 
 COPY --from=builder /go/src/kis/main /main
 
-ENTRYPOINT [ "/main" ]
+CMD [ "/main" ]
