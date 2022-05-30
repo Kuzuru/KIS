@@ -12,7 +12,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 
-	HelloworldAPI "github.com/Kuzuru/KIS/api/helloworld"
+	HelloworldAPI "github.com/kuzuru/KIS/api/helloworld"
 )
 
 func Run(port string) {

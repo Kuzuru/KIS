@@ -1,4 +1,4 @@
-module github.com/Kuzuru/KIS
+module github.com/kuzuru/KIS
 
 go 1.18
 
