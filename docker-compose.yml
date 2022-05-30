@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  main-api-service:
+    container_name: "Main-API-Service"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=postgres://user:pass@postgresql-db:5432/main-api-service?sslmode=disable
+      - PORT=8080
+    depends_on:
+      - postgresql-db
+
+  postgresql-db:
+    container_name: "PostgreSQL-DB"
+    image: postgres:14.3
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+    healthcheck:
+      test: PGPASSWORD='pass' psql -U user --command='SELECT 1'
+      interval: 1s
+      timeout: 2s
+      retries: 5
